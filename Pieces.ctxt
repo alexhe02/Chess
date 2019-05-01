@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=levelcost\ health\ attack\ experienceondeath
+comment0.target=Pieces(int,\ int,\ int,\ int)
+comment1.params=other
+comment1.target=void\ attack(Pieces)
+comment2.params=
+comment2.target=void\ block()
+comment3.params=other
+comment3.target=void\ die(Pieces)
+numComments=4
