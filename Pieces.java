@@ -2,7 +2,7 @@
 
 /**
  * Abhinav Chowdavarapu and Alex He
- * 5/1/19
+ * 5/2/19
  */
 public class Pieces
 {
@@ -34,13 +34,13 @@ public class Pieces
     public void attack(Pieces other)
     {
         //deals damage if not blocking and removes block if blocking
-        if (!blocking)
+        if (!other.blocking)
         {
             other.damage += attack;
         }
         else
         {
-            blocking = false;
+            other.blocking = false;
         }
     }
     
@@ -54,6 +54,7 @@ public class Pieces
         }
     }
     
+   
     public void die(Pieces other)
     {
         //checks if dead

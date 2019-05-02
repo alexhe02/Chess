@@ -1,12 +1,12 @@
 #BlueJ class context
 comment0.params=
-comment0.target=Pawns()
+comment0.target=Bishop()
 comment1.params=other
 comment1.target=void\ attack(Pieces)
 comment2.params=
 comment2.target=void\ block()
-comment3.params=other
-comment3.target=void\ EnPassant(Pieces)
+comment3.params=
+comment3.target=void\ heal()
 comment4.params=
 comment4.target=void\ levelUp()
 comment5.params=other
