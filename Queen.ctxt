@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Queen()
+comment1.params=other
+comment1.target=void\ attack(Pieces)
+comment2.params=
+comment2.target=void\ block()
+comment3.params=
+comment3.target=void\ levelUp()
+numComments=4
