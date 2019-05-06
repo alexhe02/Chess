@@ -4,13 +4,42 @@
  * Abhinav Chowdavarapu and Alex He
  * 5/6/19
  */
+
 import java.awt.*; 
 import java.applet.*; 
-  
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
-public class Board extends Applet { 
+public class Board extends Applet implements MouseListener {
+    public static void main(String[] args)
+    {
+        
+    }
     
+    public void mouseClicked(MouseEvent m)
+    {
+        repaint();
+    }
     
+    public void mousePressed(MouseEvent m)
+    {
+        repaint();
+    }
+    
+    public void mouseReleased(MouseEvent m)
+    {
+        repaint();
+    }
+    
+    public void mouseEntered(MouseEvent m)
+    {
+        repaint();
+    }
+    
+    public void mouseExited(MouseEvent m)
+    {
+        repaint();
+    }
     //painting the board copied from https://www.geeksforgeeks.org/draw-a-chessboard-in-java-applet/
     //shortened code a little, changed the number of rows and columns to 8, and changed the size of the rectangles
     public void paint(Graphics g) 
