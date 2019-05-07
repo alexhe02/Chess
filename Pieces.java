@@ -16,6 +16,7 @@ public class Pieces
     protected boolean blocking;
     protected int numblocks;
     protected boolean dead;
+    public static Picture[8][8] = new Picture[];
     public Pieces(int levelcost, int health, int attack, int experienceondeath)
     {
         //stores the information that the subclasses will give it

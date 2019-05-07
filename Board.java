@@ -51,10 +51,15 @@ public class Board extends Applet implements MouseListener {
                 x = row * 60; 
                 y = col * 60; 
                 if ((row % 2 == 0) == (col % 2 == 0)) 
-                    g.setColor(Color.BLACK); 
+                {
+                    Color Black = new Color(13,13,13);
+                    g.setColor(Black); 
+                }
                 else
-                    g.setColor(Color.WHITE); 
-                g.fillRect(x, y, 60, 60); 
+                {
+                    g.setColor(Color.GRAY); 
+                    g.fillRect(x, y, 60, 60); 
+                }
             } 
         } 
     } 
