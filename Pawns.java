@@ -7,6 +7,7 @@
 public class Pawns extends Pieces
 {
     private int enPassantdamage;
+    public Picture thisguy;
     public Pawns()
     {
         super(3,1,1,1);
