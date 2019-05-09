@@ -11,9 +11,31 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
 public class Board extends Applet implements MouseListener {
+    public static Pieces[][] boardstate = new Pieces[8][8];
+    
     public static void main(String[] args)
     {
-        
+        for (int i = 0; i < boardstate.length; i++)
+        {
+            boardstate[1][i] = new Pawns();
+            boardstate[6][i] = new Pawns();
+        }
+        boardstate[0][1] = new Knight();
+        boardstate[7][1] = new Knight();
+        boardstate[0][6] = new Knight();
+        boardstate[7][6] = new Knight();
+        boardstate[0][0] = new Rook();
+        boardstate[7][0] = new Rook();
+        boardstate[0][7] = new Rook();
+        boardstate[7][7] = new Rook();
+        boardstate[0][2] = new Bishop();
+        boardstate[7][2] = new Bishop();
+        boardstate[0][5] = new Bishop();
+        boardstate[7][5] = new Bishop();
+        boardstate[0][3] = new King();
+        boardstate[7][3] = new King();
+        boardstate[0][4] = new Queen();
+        boardstate[7][4] = new Queen();
     }
     
     public void mouseClicked(MouseEvent m)
@@ -28,17 +50,14 @@ public class Board extends Applet implements MouseListener {
     
     public void mouseReleased(MouseEvent m)
     {
-        repaint();
     }
     
     public void mouseEntered(MouseEvent m)
     {
-        repaint();
     }
     
     public void mouseExited(MouseEvent m)
     {
-        repaint();
     }
     //painting the board copied from https://www.geeksforgeeks.org/draw-a-chessboard-in-java-applet/
     //shortened code a little, changed the number of rows and columns to 8, and changed the size of the rectangles
@@ -52,13 +71,23 @@ public class Board extends Applet implements MouseListener {
                 y = col * 60; 
                 if ((row % 2 == 0) == (col % 2 == 0)) 
                 {
-                    Color Black = new Color(13,13,13);
-                    g.setColor(Black); 
+                    if (boardstate[row][col] == null)
+                    {
+                        Color Black = new Color(13,13,13);
+                        g.setColor(Black);
+                    }
+                    else
+                    {
+                        
+                    }
                 }
                 else
                 {
-                    g.setColor(Color.GRAY); 
-                    g.fillRect(x, y, 60, 60); 
+                    if(boardstate[row][col] == null)
+                    {
+                        g.setColor(Color.GRAY); 
+                        g.fillRect(x, y, 60, 60);
+                    }
                 }
             } 
         } 

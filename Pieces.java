@@ -16,6 +16,7 @@ public class Pieces
     protected boolean blocking;
     protected int numblocks;
     protected boolean dead;
+    protected Picture me;
     public Pieces(int levelcost, int health, int attack, int experienceondeath)
     {
         //stores the information that the subclasses will give it
