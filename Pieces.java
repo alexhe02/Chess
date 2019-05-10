@@ -17,7 +17,7 @@ public class Pieces
     protected int numblocks;
     protected boolean dead;
     protected Picture me;
-    public Pieces(int levelcost, int health, int attack, int experienceondeath)
+    public Pieces(int levelcost, int health, int attack, int experienceondeath, Picture me)
     {
         //stores the information that the subclasses will give it
         level = 1;
@@ -30,6 +30,7 @@ public class Pieces
         blocking = false;
         numblocks = 0;
         dead = false;
+        this.me = me;
     }
     
     public void attack(Pieces other)
