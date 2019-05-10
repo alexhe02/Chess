@@ -9,7 +9,7 @@ import java.awt.*;
 import java.applet.*; 
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
-
+import javax.imageio.ImageIO;
 public class Board extends Applet implements MouseListener {
     public static Pieces[][] boardstate = new Pieces[8][8];
     

@@ -4,13 +4,18 @@
  * Abhinav Chowdavarapu and Alex He
  * 5/2/19
  */
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.applet.*;
+import java.lang.*;
+import javax.swing.*;
 public class Bishop extends Pieces
 {
     private int healamount;
     private int numheals;
     public Bishop()
     {
-        super(3,2,2,3);
+        super(3,2,2,3,getImage(getDocumentBase(),"Black Bishop Board"));
         healamount = 3;
         numheals = 0;
     }

@@ -4,6 +4,7 @@
  * Abhinav Chowdavarapu and Alex He
  * 5/3/19
  */
+import javax.imageio.ImageIO;
 public class King extends Pieces
 {
     private double damageReduction;

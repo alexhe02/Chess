@@ -4,10 +4,11 @@
  * Abhinav Chowdavarapu and Alex He
  * 5/2/19
  */
+import javax.imageio.ImageIO;
 public class Pawns extends Pieces
 {
     private int enPassantdamage;
-    public Picture thisguy;
+    public ImageIO thisguy;
     public Pawns()
     {
         super(3,1,1,1);

@@ -4,6 +4,10 @@
  * Abhinav Chowdavarapu and Alex He
  * 5/2/19
  */
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.applet.*;
+import javax.swing.*;
 public class Pieces
 {
     protected int levelcost;
@@ -16,8 +20,8 @@ public class Pieces
     protected boolean blocking;
     protected int numblocks;
     protected boolean dead;
-    protected Picture me;
-    public Pieces(int levelcost, int health, int attack, int experienceondeath, Picture me)
+    protected ImageIO me;
+    public Pieces(int levelcost, int health, int attack, int experienceondeath, ImageIO me)
     {
         //stores the information that the subclasses will give it
         level = 1;
@@ -31,6 +35,7 @@ public class Pieces
         numblocks = 0;
         dead = false;
         this.me = me;
+        
     }
     
     public void attack(Pieces other)

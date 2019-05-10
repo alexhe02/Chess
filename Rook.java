@@ -4,6 +4,7 @@
  * Abhinav Chowdavarapu and Alex He
  * 5/2/19
  */
+import javax.imageio.ImageIO;
 public class Rook extends Pieces
 {
     protected double fortifypercent;
