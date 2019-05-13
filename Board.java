@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
 public class Board extends Applet implements MouseListener {
     public static Pieces[][] boardstate = new Pieces[8][8];
     
-    public static void main(String[] args)
+    public void init()
     {
         for (int i = 0; i < boardstate.length; i++)
         {
@@ -29,6 +29,7 @@ public class Board extends Applet implements MouseListener {
         boardstate[0][7] = new Rook();
         boardstate[7][7] = new Rook();
         boardstate[0][2] = new Bishop();
+        
         boardstate[7][2] = new Bishop();
         boardstate[0][5] = new Bishop();
         boardstate[7][5] = new Bishop();
@@ -63,6 +64,7 @@ public class Board extends Applet implements MouseListener {
     //shortened code a little, changed the number of rows and columns to 8, and changed the size of the rectangles
     public void paint(Graphics g) 
     { 
+        
         int x, y; 
         for (int row = 0; row < 8; row++) { 
   
@@ -91,5 +93,6 @@ public class Board extends Applet implements MouseListener {
                 }
             } 
         } 
+        
     } 
 } 

@@ -8,7 +8,8 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.applet.*;
 import javax.swing.*;
-public class Pieces
+import java.io.IOException;
+public abstract class Pieces
 {
     protected int levelcost;
     protected int level;
@@ -20,8 +21,8 @@ public class Pieces
     protected boolean blocking;
     protected int numblocks;
     protected boolean dead;
-    protected ImageIO me;
-    public Pieces(int levelcost, int health, int attack, int experienceondeath, ImageIO me)
+    protected Image sprite;
+    public Pieces(int levelcost, int health, int attack, int experienceondeath)
     {
         //stores the information that the subclasses will give it
         level = 1;
@@ -34,7 +35,6 @@ public class Pieces
         blocking = false;
         numblocks = 0;
         dead = false;
-        this.me = me;
         
     }
     
@@ -71,5 +71,11 @@ public class Pieces
             this.dead = true;
             other.experience += this.experienceondeath;
         }
+    }
+    
+    public void draw(Graphics page)
+    {
+        page.drawImage(sprite, 10, 10, null);
+        
     }
 }
