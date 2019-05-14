@@ -1,5 +1,4 @@
 
-
 /**
  * Abhinav Chowdavarapu and Alex He
  * 5/6/19
@@ -12,7 +11,7 @@ import java.awt.event.MouseEvent;
 import javax.imageio.ImageIO;
 public class Board extends Applet implements MouseListener {
     public static Pieces[][] boardstate = new Pieces[8][8];
-    
+
     public void init()
     {
         for (int i = 0; i < boardstate.length; i++)
@@ -32,30 +31,34 @@ public class Board extends Applet implements MouseListener {
         boardstate[7][1] = new Bishop();
         boardstate[0][6] = new Bishop();
         boardstate[7][6] = new Bishop();
+        boardstate[0][2] = new Bishop();
+        boardstate[7][2] = new Bishop();
+        boardstate[0][5] = new Bishop();
+        boardstate[7][5] = new Bishop();
         boardstate[0][3] = new King();
         boardstate[7][3] = new King();
         boardstate[0][4] = new Queen();
         boardstate[7][4] = new Queen();
     }
-    
+
     public void mouseClicked(MouseEvent m)
     {
         repaint();
     }
-    
+
     public void mousePressed(MouseEvent m)
     {
         repaint();
     }
-    
+
     public void mouseReleased(MouseEvent m)
     {
     }
-    
+
     public void mouseEntered(MouseEvent m)
     {
     }
-    
+
     public void mouseExited(MouseEvent m)
     {
     }
@@ -65,25 +68,19 @@ public class Board extends Applet implements MouseListener {
     { 
         int x, y; 
         for (int row = 0; row < 8; row++) { 
-  
+
             for (int col = 0; col < 8; col++) { 
                 x = row * 60; 
                 y = col * 60; 
                 if ((row % 2 == 0) == (col % 2 == 0)) 
                 {
-                    //if (boardstate[row][col] == null)
-                    //{
-                        Color Black = new Color(13,13,13);
-                        g.setColor(Black);
-                    //}
+                    Color Black = new Color(13,13,13);
+                    g.setColor(Black);
                 }
                 else
                 {
-                    //if(boardstate[row][col] == null)
-                    //{
-                        g.setColor(Color.GRAY); 
-                        g.fillRect(x, y, 60, 60);
-                    //}
+                    g.setColor(Color.GRAY); 
+                    g.fillRect(x, y, 60, 60);
                 }
             } 
         } 

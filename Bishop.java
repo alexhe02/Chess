@@ -9,17 +9,34 @@ import java.awt.*;
 import java.applet.*;
 import java.lang.*;
 import javax.swing.*;
+import java.io.IOException;
+import java.io.File;
 public class Bishop extends Pieces
 {
     private int healamount;
     private int numheals;
     public Bishop()
     {
-        super(3,2,2,3,getImage(getDocumentBase(),"Black Bishop Board"));
+        super(3,2,2,3);
+        setSprite();
         healamount = 3;
         numheals = 0;
     }
     
+    
+    /**
+     * With help from Henry
+     */
+    public void setSprite()
+    {
+        try
+        {
+            sprite = ImageIO.read(new File("Images/Black Bishop Board.jpg"));
+        }catch (IOException e){
+        }
+
+    }
+
     public void attack(Pieces other)
     {
         super.attack(other);
