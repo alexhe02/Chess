@@ -1,12 +1,15 @@
 #BlueJ class context
-comment0.params=
-comment0.target=King()
-comment1.params=
-comment1.target=void\ block()
+comment0.params=input
+comment0.target=King(boolean)
+comment1.params=input
+comment1.target=void\ setSprite(boolean)
+comment1.text=\r\n\ With\ help\ from\ Henry\r\n
 comment2.params=
-comment2.target=void\ charge()
-comment3.params=other
-comment3.target=void\ attack(Pieces)
-comment4.params=
-comment4.target=void\ levelUp()
-numComments=5
+comment2.target=void\ block()
+comment3.params=
+comment3.target=void\ charge()
+comment4.params=other
+comment4.target=void\ attack(Pieces)
+comment5.params=
+comment5.target=void\ levelUp()
+numComments=6

@@ -5,14 +5,41 @@
  * 5/2/19
  */
 import javax.imageio.ImageIO;
+import java.awt.*;
+import java.applet.*;
+import java.lang.*;
+import javax.swing.*;
+import java.io.IOException;
+import java.io.File;
 public class Pawns extends Pieces
 {
     private int enPassantdamage;
     public ImageIO thisguy;
-    public Pawns()
+    public Pawns(boolean input)
     {
-        super(3,1,1,1);
+        super(3,1,1,1,input);
         enPassantdamage = 2;
+        setSprite(input);
+    }
+    
+    /**
+     * With help from Henry
+     */
+    public void setSprite(boolean input)
+    {
+        try
+        {
+            if(input)
+            {
+                sprite = ImageIO.read(new File("Images/Black Pawn Board.jpg"));
+            }
+            else
+            {
+                sprite = ImageIO.read(new File("Images/White Pawn Board.jpg"));
+            }
+        }catch (IOException e){
+        }
+
     }
     
     public void attack(Pieces other)

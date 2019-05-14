@@ -16,29 +16,25 @@ public class Board extends Applet implements MouseListener {
     {
         for (int i = 0; i < boardstate.length; i++)
         {
-            boardstate[1][i] = new Pawns();
-            boardstate[6][i] = new Pawns();
+            boardstate[1][i] = new Pawns(false);
+            boardstate[6][i] = new Pawns(true);
         }
-        boardstate[0][2] = new Knight();
-        boardstate[7][2] = new Knight();
-        boardstate[0][5] = new Knight();
-        boardstate[7][5] = new Knight();
-        boardstate[0][0] = new Rook();
-        boardstate[7][0] = new Rook();
-        boardstate[0][7] = new Rook();
-        boardstate[7][7] = new Rook();
-        boardstate[0][1] = new Bishop();    
-        boardstate[7][1] = new Bishop();
-        boardstate[0][6] = new Bishop();
-        boardstate[7][6] = new Bishop();
-        boardstate[0][2] = new Bishop();
-        boardstate[7][2] = new Bishop();
-        boardstate[0][5] = new Bishop();
-        boardstate[7][5] = new Bishop();
-        boardstate[0][3] = new King();
-        boardstate[7][3] = new King();
-        boardstate[0][4] = new Queen();
-        boardstate[7][4] = new Queen();
+        boardstate[0][2] = new Knight(false);
+        boardstate[7][2] = new Knight(true);
+        boardstate[0][5] = new Knight(false);
+        boardstate[7][5] = new Knight(true);
+        boardstate[0][0] = new Rook(false);
+        boardstate[7][0] = new Rook(true);
+        boardstate[0][7] = new Rook(false);
+        boardstate[7][7] = new Rook(true);
+        boardstate[0][1] = new Bishop(false);    
+        boardstate[7][1] = new Bishop(true);
+        boardstate[0][6] = new Bishop(false);
+        boardstate[7][6] = new Bishop(true);
+        boardstate[0][3] = new King(false);
+        boardstate[7][3] = new King(true);
+        boardstate[0][4] = new Queen(false);
+        boardstate[7][4] = new Queen(true);
     }
 
     public void mouseClicked(MouseEvent m)
@@ -74,15 +70,29 @@ public class Board extends Applet implements MouseListener {
                 y = col * 60; 
                 if ((row % 2 == 0) == (col % 2 == 0)) 
                 {
-                    Color Black = new Color(13,13,13);
-                    g.setColor(Black);
+                    if(boardstate[row][col] == null)
+                    {
+                        Color Black = new Color(13,13,13);
+                        g.setColor(Black);
+                    }
+                    else
+                    {
+                        g.drawImage(boardstate[row][col].getSprite(),row*60,col*60,null);
+                    }
                 }
                 else
                 {
-                    g.setColor(Color.GRAY); 
-                    g.fillRect(x, y, 60, 60);
+                    if(boardstate[row][col] == null)
+                    {
+                        g.setColor(Color.GRAY); 
+                        g.fillRect(x, y, 60, 60);
+                    }
+                    else
+                    {
+                        g.drawImage(boardstate[row][col].getSprite(),row*60,col*60,null);
+                    }
                 }
             } 
-        } 
+        }
     } 
 } 

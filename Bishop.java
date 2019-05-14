@@ -15,10 +15,10 @@ public class Bishop extends Pieces
 {
     private int healamount;
     private int numheals;
-    public Bishop()
+    public Bishop(boolean input)
     {
-        super(3,2,2,3);
-        setSprite();
+        super(3,2,2,3,input);
+        setSprite(input);
         healamount = 3;
         numheals = 0;
     }
@@ -27,16 +27,24 @@ public class Bishop extends Pieces
     /**
      * With help from Henry
      */
-    public void setSprite()
+    public void setSprite(boolean input)
     {
         try
         {
-            sprite = ImageIO.read(new File("Images/Black Bishop Board.jpg"));
+            if(input)
+            {
+                sprite = ImageIO.read(new File("Images/Black Bishop Board.jpg"));
+            }
+            else
+            {
+                sprite = ImageIO.read(new File("Images/White Bishop Board.jpg"));
+            }
         }catch (IOException e){
         }
 
     }
 
+    
     public void attack(Pieces other)
     {
         super.attack(other);

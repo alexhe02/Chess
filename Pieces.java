@@ -21,7 +21,8 @@ public abstract class Pieces
     protected int numblocks;
     protected boolean dead;
     protected Image sprite;
-    public Pieces(int levelcost, int health, int attack, int experienceondeath)
+    protected boolean type;
+    public Pieces(int levelcost, int health, int attack, int experienceondeath, boolean type)
     {
         //stores the information that the subclasses will give it
         level = 1;
@@ -34,7 +35,7 @@ public abstract class Pieces
         blocking = false;
         numblocks = 0;
         dead = false;
-        
+        this.type = type;
     }
     
     public void attack(Pieces other)
@@ -71,9 +72,8 @@ public abstract class Pieces
         }
     }
     
-     public void draw(Graphics page)
+    public Image getSprite()
     {
-        page.drawImage(sprite, 10, 10, null);
-        
+        return sprite;
     }
 }

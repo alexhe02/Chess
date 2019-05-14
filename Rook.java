@@ -5,15 +5,41 @@
  * 5/2/19
  */
 import javax.imageio.ImageIO;
+import java.awt.*;
+import java.applet.*;
+import java.lang.*;
+import javax.swing.*;
+import java.io.IOException;
+import java.io.File;
 public class Rook extends Pieces
 {
     protected double fortifypercent;
-    public Rook()
+    public Rook(boolean input)
     {
-        super(5,1,3,5);
+        super(5,1,3,5,input);
         fortifypercent = .1;
+        setSprite(input);
     }
     
+    /**
+     * With help from Henry
+     */
+    public void setSprite(boolean input)
+    {
+        try
+        {
+            if(input)
+            {
+                sprite = ImageIO.read(new File("Images/Black Rook Board.jpg"));
+            }
+            else
+            {
+                sprite = ImageIO.read(new File("Images/White Rook Board.jpg"));
+            }
+        }catch (IOException e){
+        }
+
+    }
     public void attack (Pieces other)
     {
         super.attack(other);

@@ -5,14 +5,42 @@
  * 5/2/19
  */
 import javax.imageio.ImageIO;
+import java.awt.*;
+import java.applet.*;
+import java.lang.*;
+import javax.swing.*;
+import java.io.IOException;
+import java.io.File;
 public class Knight extends Pieces
 {
     private int trampledamage;
-    public Knight()
+    public Knight(boolean input)
     {
-        super(5,2,2,3);
+        super(5,2,2,3,input);
         trampledamage = 2;
+        setSprite(input);
     }
+    
+    /**
+     * With help from Henry
+     */
+    public void setSprite(boolean input)
+    {
+        try
+        {
+            if(input)
+            {
+                sprite = ImageIO.read(new File("Images/Black Knight Board.jpg"));
+            }
+            else
+            {
+                sprite = ImageIO.read(new File("Images/White Knight Board.jpg"));
+            }
+        }catch (IOException e){
+        }
+
+    }
+    
     
     public void attack(Pieces other)
     {

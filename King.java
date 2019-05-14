@@ -5,16 +5,44 @@
  * 5/3/19
  */
 import javax.imageio.ImageIO;
+import java.awt.*;
+import java.applet.*;
+import java.lang.*;
+import javax.swing.*;
+import java.io.IOException;
+import java.io.File;
 public class King extends Pieces
 {
     private double damageReduction;
     private int tempattack;
-    public King()
+    public King(boolean input)
     {
-        super(16,3,1,2);
+        super(16,3,1,2,input);
         damageReduction = 0.1;
         tempattack = attack;
+        setSprite(input);
     }
+    
+    /**
+     * With help from Henry
+     */
+    public void setSprite(boolean input)
+    {
+        try
+        {
+            if(input)
+            {
+                sprite = ImageIO.read(new File("Images/Black King Board.jpg"));
+            }
+            else
+            {
+                sprite = ImageIO.read(new File("Images/White King Board.jpg"));
+            }
+        }catch (IOException e){
+        }
+
+    }
+    
     
     public void block()
     {

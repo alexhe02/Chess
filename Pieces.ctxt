@@ -1,12 +1,12 @@
 #BlueJ class context
-comment0.params=levelcost\ health\ attack\ experienceondeath
-comment0.target=Pieces(int,\ int,\ int,\ int)
+comment0.params=levelcost\ health\ attack\ experienceondeath\ type
+comment0.target=Pieces(int,\ int,\ int,\ int,\ boolean)
 comment1.params=other
 comment1.target=void\ attack(Pieces)
 comment2.params=
 comment2.target=void\ block()
 comment3.params=other
 comment3.target=void\ die(Pieces)
-comment4.params=page
-comment4.target=void\ draw(java.awt.Graphics)
+comment4.params=
+comment4.target=java.awt.Image\ getSprite()
 numComments=5

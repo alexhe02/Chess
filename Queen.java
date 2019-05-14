@@ -5,13 +5,40 @@
  * 5/3/19
  */
 import javax.imageio.ImageIO;
+import java.awt.*;
+import java.applet.*;
+import java.lang.*;
+import javax.swing.*;
+import java.io.IOException;
+import java.io.File;
 public class Queen extends Pieces
 {
     private double defendPercent;
-    public Queen()
+    public Queen(boolean input)
     {
-        super(5,4,4,1);
+        super(5,4,4,1,input);
         defendPercent = 0.1;
+        setSprite(input);
+    }
+    
+    /**
+     * With help from Henry
+     */
+    public void setSprite(boolean input)
+    {
+        try
+        {
+            if(input)
+            {
+                sprite = ImageIO.read(new File("Images/Black Queen Board.jpg"));
+            }
+            else
+            {
+                sprite = ImageIO.read(new File("Images/White Queen Board.jpg"));
+            }
+        }catch (IOException e){
+        }
+
     }
     
     public void attack(Pieces other)
