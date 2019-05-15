@@ -38,6 +38,11 @@ public abstract class Pieces
         this.type = type;
     }
     
+    public boolean getType()
+    {
+        return type;
+    }
+    
     public void attack(Pieces other)
     {
         //deals damage if not blocking and removes block if blocking

@@ -11,7 +11,11 @@ import java.awt.event.MouseEvent;
 import javax.imageio.ImageIO;
 public class Board extends Applet implements MouseListener {
     public static Pieces[][] boardstate = new Pieces[8][8];
-
+    public static Pieces currentpiece;
+    public static int currentx;
+    public static int currenty;
+    public static int newx;
+    public static int newy;
     public void init()
     {
         for (int i = 0; i < boardstate.length; i++)
@@ -19,18 +23,18 @@ public class Board extends Applet implements MouseListener {
             boardstate[1][i] = new Pawns(false);
             boardstate[6][i] = new Pawns(true);
         }
-        boardstate[0][2] = new Knight(false);
-        boardstate[7][2] = new Knight(true);
-        boardstate[0][5] = new Knight(false);
-        boardstate[7][5] = new Knight(true);
+        boardstate[0][1] = new Knight(false);
+        boardstate[7][1] = new Knight(true);
+        boardstate[0][6] = new Knight(false);
+        boardstate[7][6] = new Knight(true);
         boardstate[0][0] = new Rook(false);
         boardstate[7][0] = new Rook(true);
         boardstate[0][7] = new Rook(false);
         boardstate[7][7] = new Rook(true);
-        boardstate[0][1] = new Bishop(false);    
-        boardstate[7][1] = new Bishop(true);
-        boardstate[0][6] = new Bishop(false);
-        boardstate[7][6] = new Bishop(true);
+        boardstate[0][2] = new Bishop(false);    
+        boardstate[7][2] = new Bishop(true);
+        boardstate[0][5] = new Bishop(false);
+        boardstate[7][5] = new Bishop(true);
         boardstate[0][3] = new King(false);
         boardstate[7][3] = new King(true);
         boardstate[0][4] = new Queen(false);
@@ -39,12 +43,14 @@ public class Board extends Applet implements MouseListener {
 
     public void mouseClicked(MouseEvent m)
     {
-        repaint();
+        System.out.println("works");
+        //currentx = m.getX()/60;
+        //currenty = m.getY()/60;
+        //currentpiece = boardstate[currentx][currenty];
     }
 
     public void mousePressed(MouseEvent m)
     {
-        repaint();
     }
 
     public void mouseReleased(MouseEvent m)
