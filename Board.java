@@ -16,6 +16,8 @@ public class Board extends Applet implements MouseListener {
     public static int currenty;
     public static int newx;
     public static int newy;
+    public static boolean turn;
+    public static boolean attacksequence;
     public void init()
     {
         for (int i = 0; i < boardstate.length; i++)
@@ -39,14 +41,40 @@ public class Board extends Applet implements MouseListener {
         boardstate[7][3] = new King(true);
         boardstate[0][4] = new Queen(false);
         boardstate[7][4] = new Queen(true);
+        addMouseListener(this);
+        turn = false;
+        attacksequence = false;
     }
 
     public void mouseClicked(MouseEvent m)
     {
-        System.out.println("works");
-        //currentx = m.getX()/60;
-        //currenty = m.getY()/60;
-        //currentpiece = boardstate[currentx][currenty];
+        if(currentpiece == null)
+        {
+            currentx = m.getX()/60;
+            currenty = m.getY()/60;
+            currentpiece = boardstate[currentx][currenty];
+            if(turn != currentpiece.type)
+            {
+                currentpiece = null;
+            }
+        }
+        else
+        {
+            newx = m.getX()/60;
+            newy = m.getY()/60;
+            if (newx != currentx || newy != currenty)
+            {
+                boardstate[newx][newy] = currentpiece;
+                boardstate[currentx][currenty] = null;
+                currentpiece = null;
+                turn = !turn;
+            }
+            else
+            {
+                currentpiece = null;
+            }
+        }
+        repaint();
     }
 
     public void mousePressed(MouseEvent m)
@@ -68,37 +96,40 @@ public class Board extends Applet implements MouseListener {
     //shortened code a little, changed the number of rows and columns to 8, and changed the size of the rectangles
     public void paint(Graphics g) 
     { 
-        int x, y; 
-        for (int row = 0; row < 8; row++) { 
-
-            for (int col = 0; col < 8; col++) { 
-                x = row * 60; 
-                y = col * 60; 
-                if ((row % 2 == 0) == (col % 2 == 0)) 
-                {
-                    if(boardstate[row][col] == null)
+        if(!attacksequence)
+        {
+            int x, y; 
+            for (int row = 0; row < 8; row++) { 
+    
+                for (int col = 0; col < 8; col++) { 
+                    x = row * 60; 
+                    y = col * 60; 
+                    if ((row % 2 == 0) == (col % 2 == 0)) 
                     {
-                        Color Black = new Color(13,13,13);
-                        g.setColor(Black);
+                        if(boardstate[row][col] == null)
+                        {
+                            Color Black = new Color(13,13,13);
+                            g.setColor(Black);
+                        }
+                        else
+                        {
+                            g.drawImage(boardstate[row][col].getSprite(),row*60,col*60,null);
+                        }
                     }
                     else
                     {
-                        g.drawImage(boardstate[row][col].getSprite(),row*60,col*60,null);
+                        if(boardstate[row][col] == null)
+                        {
+                            g.setColor(Color.GRAY); 
+                            g.fillRect(x, y, 60, 60);
+                        }
+                        else
+                        {
+                            g.drawImage(boardstate[row][col].getSprite(),row*60,col*60,null);
+                        }
                     }
-                }
-                else
-                {
-                    if(boardstate[row][col] == null)
-                    {
-                        g.setColor(Color.GRAY); 
-                        g.fillRect(x, y, 60, 60);
-                    }
-                    else
-                    {
-                        g.drawImage(boardstate[row][col].getSprite(),row*60,col*60,null);
-                    }
-                }
-            } 
+                } 
+            }
         }
     } 
 } 
