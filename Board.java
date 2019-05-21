@@ -62,17 +62,151 @@ public class Board extends Applet implements MouseListener {
         {
             newx = m.getX()/60;
             newy = m.getY()/60;
-            if (newx != currentx || newy != currenty)
-            {
-                boardstate[newx][newy] = currentpiece;
-                boardstate[currentx][currenty] = null;
-                currentpiece = null;
-                turn = !turn;
-            }
-            else
-            {
-                currentpiece = null;
-            }
+            //if(boardstate[newx][newy] != null && boardstate[newx][newy].type != currentpiece.type)
+            //{
+                if(currentpiece instanceof Pawns)
+                {
+                    if(!currentpiece.type)
+                    {
+                        if(boardstate[newx][newy] == null)
+                        {
+                            if((currentx == 1 && (newx - 2) == currentx && newy == currenty))
+                            {
+                                boardstate[newx][newy] = currentpiece;
+                                boardstate[currentx][currenty] = null;
+                                currentpiece = null;
+                                turn = !turn;
+                            }
+                            else if(((newx - 1) == currentx && newy == currenty))
+                            {
+                                boardstate[newx][newy] = currentpiece;
+                                boardstate[currentx][currenty] = null;
+                                currentpiece = null;
+                                turn = !turn;
+                            }
+                            else
+                            {
+                                currentpiece = null;
+                            }
+                        }
+                        else
+                        {
+                            if(currenty == 0)
+                            {
+                                if((newx - 1) == currentx && (newy - 1) == currenty)//attack once ready
+                                {
+                                    boardstate[newx][newy] = currentpiece;
+                                    boardstate[currentx][currenty] = null;
+                                    currentpiece = null;
+                                    turn = !turn;
+                                }
+                                else
+                                {
+                                    currentpiece = null;
+                                }
+                            }
+                            else if (currenty == 7)
+                            {
+                                if((newx - 1) == currentx && (newy + 1) == currenty)//attack once ready
+                                {
+                                    boardstate[newx][newy] = currentpiece;
+                                    boardstate[currentx][currenty] = null;
+                                    currentpiece = null;
+                                    turn = !turn;
+                                }
+                                else
+                                {
+                                    currentpiece = null;
+                                }
+                            }
+                            else
+                            {
+                                if(((newx - 1) == currentx && (newy + 1) == currenty) || ((newx - 1) == currentx && (newy - 1) == currenty))
+                                {
+                                    boardstate[newx][newy] = currentpiece;
+                                    boardstate[currentx][currenty] = null;
+                                    currentpiece = null;
+                                    turn = !turn;
+                                }
+                                else
+                                {
+                                    currentpiece = null;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if(boardstate[newx][newy] == null)
+                        {
+                            if((currentx == 6 && (newx + 2) == currentx && newy == currenty) || ((newx + 1) == currentx && newy == currenty))
+                            {
+                                boardstate[newx][newy] = currentpiece;
+                                boardstate[currentx][currenty] = null;
+                                currentpiece = null;
+                                turn = !turn;
+                            }
+                            else
+                            {
+                                currentpiece = null;
+                            }
+                        }
+                        else
+                        {
+                            if(currenty == 0)
+                            {
+                                if((newx + 1) == currentx && (newy - 1) == currenty)//attack once ready
+                                {
+                                    boardstate[newx][newy] = currentpiece;
+                                    boardstate[currentx][currenty] = null;
+                                    currentpiece = null;
+                                    turn = !turn;
+                                }
+                                else
+                                {
+                                    currentpiece = null;
+                                }
+                            }
+                            else if (currenty == 7)
+                            {
+                                if((newx + 1) == currentx && (newy + 1) == currenty)//attack once ready
+                                {
+                                    boardstate[newx][newy] = currentpiece;
+                                    boardstate[currentx][currenty] = null;
+                                    currentpiece = null;
+                                    turn = !turn;
+                                }
+                                else
+                                {
+                                    currentpiece = null;
+                                }
+                            }
+                        }
+                    }
+                }
+                else if(currentpiece instanceof Knight)
+                {
+                    
+                }
+                else//for rest of pieces while testing
+                {
+                    if (newx != currentx || newy != currenty)
+                    {
+                        boardstate[newx][newy] = currentpiece;
+                        boardstate[currentx][currenty] = null;
+                        currentpiece = null;
+                        turn = !turn;
+                    }
+                    else
+                    {
+                        currentpiece = null;
+                    }
+                }
+            //}
+            //else
+            //{
+            //    currentpiece = null;
+            //}
         }
         repaint();
     }
