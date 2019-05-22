@@ -285,6 +285,8 @@ public class Board extends Applet implements MouseListener {
                         }
                         else
                         {
+                            Color Black = new Color(13,13,13);
+                            g.setColor(Black);
                             g.drawImage(boardstate[row][col].getSprite(),row*60,col*60,null);
                         }
                     }
@@ -297,6 +299,8 @@ public class Board extends Applet implements MouseListener {
                         }
                         else
                         {
+                            g.setColor(Color.GRAY); 
+                            g.fillRect(x, y, 60, 60);
                             g.drawImage(boardstate[row][col].getSprite(),row*60,col*60,null);
                         }
                     }
