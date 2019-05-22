@@ -62,81 +62,81 @@ public class Board extends Applet implements MouseListener {
         {
             newx = m.getX()/60;
             newy = m.getY()/60;
-            //if(boardstate[newx][newy] != null && boardstate[newx][newy].type != currentpiece.type)
-            //{
+            if((boardstate[newx][newy] == null) || (boardstate[newx][newy] != null && boardstate[newx][newy].type != currentpiece.type))
+            {
                 if(currentpiece instanceof Pawns)
                 {
-                    if(!currentpiece.type)
+                    if(!currentpiece.type)//checks type of pawn
                     {
-                        if(boardstate[newx][newy] == null)
+                        if(boardstate[newx][newy] == null)//checks if moves to empty space
                         {
-                            if((currentx == 1 && (newx - 2) == currentx && newy == currenty))
+                            if((currentx == 1 && (newx - 2) == currentx && newy == currenty))//double move for first move
                             {
                                 boardstate[newx][newy] = currentpiece;
                                 boardstate[currentx][currenty] = null;
                                 currentpiece = null;
                                 turn = !turn;
                             }
-                            else if(((newx - 1) == currentx && newy == currenty))
+                            else if(((newx - 1) == currentx && newy == currenty))//single move otherwise
                             {
                                 boardstate[newx][newy] = currentpiece;
                                 boardstate[currentx][currenty] = null;
                                 currentpiece = null;
                                 turn = !turn;
                             }
-                            else
+                            else//resets if invalid
                             {
                                 currentpiece = null;
                             }
                         }
-                        else
+                        else//if trying to take a piece
                         {
-                            if(currenty == 0)
+                            if(currenty == 0)//checks if top piece
                             {
                                 if((newx - 1) == currentx && (newy - 1) == currenty)//attack once ready
-                                {
+                                {//checks if piece is diagonal below to take
                                     boardstate[newx][newy] = currentpiece;
                                     boardstate[currentx][currenty] = null;
                                     currentpiece = null;
                                     turn = !turn;
                                 }
                                 else
-                                {
+                                {//resets otherwise
                                     currentpiece = null;
                                 }
                             }
-                            else if (currenty == 7)
+                            else if (currenty == 7)//checks if bottom piece
                             {
                                 if((newx - 1) == currentx && (newy + 1) == currenty)//attack once ready
-                                {
+                                {//checks if piece is diagonal above to take
                                     boardstate[newx][newy] = currentpiece;
                                     boardstate[currentx][currenty] = null;
                                     currentpiece = null;
                                     turn = !turn;
                                 }
                                 else
-                                {
+                                {//resets otherwise
                                     currentpiece = null;
                                 }
                             }
-                            else
+                            else//if not top or bottom pawn
                             {
                                 if(((newx - 1) == currentx && (newy + 1) == currenty) || ((newx - 1) == currentx && (newy - 1) == currenty))
-                                {
+                                {//checks if above or below diagonal to take
                                     boardstate[newx][newy] = currentpiece;
                                     boardstate[currentx][currenty] = null;
                                     currentpiece = null;
                                     turn = !turn;
                                 }
                                 else
-                                {
+                                {//resets otherwise
                                     currentpiece = null;
                                 }
                             }
                         }
                     }
                     else
-                    {
+                    {//repeats with black pieces
                         if(boardstate[newx][newy] == null)
                         {
                             if((currentx == 6 && (newx + 2) == currentx && newy == currenty) || ((newx + 1) == currentx && newy == currenty))
@@ -181,10 +181,48 @@ public class Board extends Applet implements MouseListener {
                                     currentpiece = null;
                                 }
                             }
+                            else
+                            {
+                                if(((newx + 1) == currentx && (newy + 1) == currenty) || ((newx + 1) == currentx && (newy - 1) == currenty))
+                                {
+                                    boardstate[newx][newy] = currentpiece;
+                                    boardstate[currentx][currenty] = null;
+                                    currentpiece = null;
+                                    turn = !turn;
+                                }
+                                else
+                                {
+                                    currentpiece = null;
+                                }
+                            }
                         }
                     }
                 }
                 else if(currentpiece instanceof Knight)
+                {
+                    if((Math.abs(currentx-newx) == 2 && Math.abs(currenty-newy) == 1) || (Math.abs(currentx-newx) == 1 && Math.abs(currenty - newy) == 2))
+                    {
+                        if(boardstate[newx][newy] == null)
+                        {
+                            boardstate[newx][newy] = currentpiece;
+                            boardstate[currentx][currenty] = null;
+                            currentpiece = null;
+                            turn = !turn;
+                        }
+                        else//attack once ready
+                        {
+                            boardstate[newx][newy] = currentpiece;
+                            boardstate[currentx][currenty] = null;
+                            currentpiece = null;
+                            turn = !turn;
+                        }
+                    }
+                    else
+                    {//resets otherwise
+                        currentpiece = null;
+                    }
+                }
+                else if(currentpiece instanceof Bishop)
                 {
                     
                 }
@@ -202,11 +240,11 @@ public class Board extends Applet implements MouseListener {
                         currentpiece = null;
                     }
                 }
-            //}
-            //else
-            //{
-            //    currentpiece = null;
-            //}
+            }
+            else
+            {//resets if trying to take own piece
+                currentpiece = null;
+            }
         }
         repaint();
     }
