@@ -70,7 +70,7 @@ public class Board extends Applet implements MouseListener {
                     {
                         if(boardstate[newx][newy] == null)//checks if moves to empty space
                         {
-                            if((currentx == 1 && (newx - 2) == currentx && newy == currenty))//double move for first move
+                            if((currentx == 1 && (newx - 2) == currentx && newy == currenty && boardstate[2][currenty] == null))//double move for first move
                             {
                                 boardstate[newx][newy] = currentpiece;
                                 boardstate[currentx][currenty] = null;
@@ -121,15 +121,22 @@ public class Board extends Applet implements MouseListener {
                             }
                             else//if not top or bottom pawn
                             {
-                                if(((newx - 1) == currentx && (newy + 1) == currenty) || ((newx - 1) == currentx && (newy - 1) == currenty))
-                                {//checks if above or below diagonal to take
+                                if((currentx == 1 && (newx + 2) == currentx && newy == currenty && boardstate[5][currenty] == null))//double move for first move
+                                {
                                     boardstate[newx][newy] = currentpiece;
                                     boardstate[currentx][currenty] = null;
                                     currentpiece = null;
                                     turn = !turn;
                                 }
-                                else
-                                {//resets otherwise
+                                else if(((newx + 1) == currentx && newy == currenty))//single move otherwise
+                                {
+                                    boardstate[newx][newy] = currentpiece;
+                                    boardstate[currentx][currenty] = null;
+                                    currentpiece = null;
+                                    turn = !turn;
+                                }
+                                else//resets if invalid
+                                {
                                     currentpiece = null;
                                 }
                             }
@@ -201,8 +208,8 @@ public class Board extends Applet implements MouseListener {
                 else if(currentpiece instanceof Knight)
                 {
                     if((Math.abs(currentx-newx) == 2 && Math.abs(currenty-newy) == 1) || (Math.abs(currentx-newx) == 1 && Math.abs(currenty - newy) == 2))
-                    {
-                        if(boardstate[newx][newy] == null)
+                    {//checks if knight is moving in an l shape
+                        if(boardstate[newx][newy] == null)//just moves if empty
                         {
                             boardstate[newx][newy] = currentpiece;
                             boardstate[currentx][currenty] = null;
@@ -224,7 +231,76 @@ public class Board extends Applet implements MouseListener {
                 }
                 else if(currentpiece instanceof Bishop)
                 {
-                    
+                    if((Math.abs(currentx-newx) == Math.abs(currenty-newy)))
+                    {
+                        boolean unobstructed = true;
+                        //next couple loops check if the bishop is unobstructed
+                        if(currentx < newx && currenty < newy)
+                        {
+                            for(int i = currentx + 1, j = currenty + 1; i < newx; i++, j++)
+                            {
+                                if(boardstate[i][j] != null)
+                                {
+                                    unobstructed = false;
+                                }
+                            }
+                        }
+                        else if(currentx > newx && currenty > newy)
+                        {
+                            for(int i = currentx - 1, j = currenty - 1; i > newx; i--, j--)
+                            {
+                                if(boardstate[i][j] != null)
+                                {
+                                    unobstructed = false;
+                                }
+                            }
+                        }
+                        else if(currentx > newx && currenty < newy)
+                        {
+                            for(int i = currentx - 1, j = currenty + 1; i > newx; i--, j++)
+                            {
+                                if(boardstate[i][j] != null)
+                                {
+                                    unobstructed = false;
+                                }
+                            }
+                        }
+                        else if(currentx < newx && currenty > newy)
+                        {
+                            for(int i = currentx + 1, j = currenty - 1; i < newx; i++, j--)
+                            {
+                                if(boardstate[i][j] != null)
+                                {
+                                    unobstructed = false;
+                                }
+                            }
+                        }
+                        if(unobstructed)
+                        {
+                            if(boardstate[newx][newy] == null)
+                            {//moves to square
+                                boardstate[newx][newy] = currentpiece;
+                                boardstate[currentx][currenty] = null;
+                                currentpiece = null;
+                                turn = !turn;
+                            }
+                            else
+                            {//attack once ready
+                                boardstate[newx][newy] = currentpiece;
+                                boardstate[currentx][currenty] = null;
+                                currentpiece = null;
+                                turn = !turn;
+                            }
+                        }
+                        else
+                        {//resets if obstructed
+                            currentpiece = null;
+                        }
+                    }
+                    else
+                    {//resets otherwise
+                        currentpiece = null;
+                    }
                 }
                 else//for rest of pieces while testing
                 {
@@ -239,6 +315,79 @@ public class Board extends Applet implements MouseListener {
                     {
                         currentpiece = null;
                     }
+                }
+            }
+            else if(currentpiece instanceof Rook)
+            {
+                if((currenty == newy && currentx != newx) || (currenty != newy && currentx == newx))
+                {//checks if moving horizontal or vertical
+                    boolean unobstructed = true;
+                    //next loops check if piece is unobstructed
+                    if(currentx > newx)
+                    {
+                        for(int i = currentx - 1; i > newx; i--)
+                        {
+                            if(boardstate[i][currenty] != null)
+                            {
+                                unobstructed = false;
+                            }
+                        }
+                    }
+                    else if(currentx < newx)
+                    {
+                        for(int i = currentx + 1; i < newx; i++)
+                        {
+                            if(boardstate[i][currenty] != null)
+                            {
+                                unobstructed = false;
+                            }
+                        }
+                    }
+                    else if(currenty > newy)
+                    {
+                        for(int i = currenty - 1; i > newy; i--)
+                        {
+                            if(boardstate[currentx][i] != null)
+                            {
+                                unobstructed = false;
+                            }
+                        }
+                    }
+                    else if(currenty < newy)
+                    {
+                        for(int i = currenty + 1; i < newy; i++)
+                        {
+                            if(boardstate[currentx][i] != null)
+                            {
+                                unobstructed = false;
+                            }
+                        }
+                    }
+                    if(unobstructed)
+                    {
+                        if(boardstate[newx][newy] == null)
+                        {
+                            boardstate[newx][newy] = currentpiece;
+                            boardstate[currentx][currenty] = null;
+                            currentpiece = null;
+                            turn = !turn;
+                        }
+                        else
+                        {//attack once ready
+                            boardstate[newx][newy] = currentpiece;
+                            boardstate[currentx][currenty] = null;
+                            currentpiece = null;
+                            turn = !turn;
+                        }
+                    }
+                    else
+                    {
+                        currentpiece = null;
+                    }
+                }
+                else
+                {//resets otherwise
+                    currentpiece = null;
                 }
             }
             else
