@@ -121,22 +121,15 @@ public class Board extends Applet implements MouseListener {
                             }
                             else//if not top or bottom pawn
                             {
-                                if((currentx == 1 && (newx + 2) == currentx && newy == currenty && boardstate[5][currenty] == null))//double move for first move
-                                {
+                                if(((newx - 1) == currentx && (newy + 1) == currenty) || ((newx - 1) == currentx && (newy - 1) == currenty))//attack once ready
+                                {//checks if piece is diagonal above to take
                                     boardstate[newx][newy] = currentpiece;
                                     boardstate[currentx][currenty] = null;
                                     currentpiece = null;
                                     turn = !turn;
                                 }
-                                else if(((newx + 1) == currentx && newy == currenty))//single move otherwise
-                                {
-                                    boardstate[newx][newy] = currentpiece;
-                                    boardstate[currentx][currenty] = null;
-                                    currentpiece = null;
-                                    turn = !turn;
-                                }
-                                else//resets if invalid
-                                {
+                                else
+                                {//resets otherwise
                                     currentpiece = null;
                                 }
                             }
@@ -302,24 +295,10 @@ public class Board extends Applet implements MouseListener {
                         currentpiece = null;
                     }
                 }
-                else//for rest of pieces while testing
+            
+                else if(currentpiece instanceof Rook)
                 {
-                    if (newx != currentx || newy != currenty)
-                    {
-                        boardstate[newx][newy] = currentpiece;
-                        boardstate[currentx][currenty] = null;
-                        currentpiece = null;
-                        turn = !turn;
-                    }
-                    else
-                    {
-                        currentpiece = null;
-                    }
-                }
-            }
-            else if(currentpiece instanceof Rook)
-            {
-                if((currenty == newy && currentx != newx) || (currenty != newy && currentx == newx))
+                if(Math.abs(currentx-newx) == 0 || Math.abs(currenty-newy) == 0)
                 {//checks if moving horizontal or vertical
                     boolean unobstructed = true;
                     //next loops check if piece is unobstructed
@@ -388,6 +367,7 @@ public class Board extends Applet implements MouseListener {
                 else
                 {//resets otherwise
                     currentpiece = null;
+                }
                 }
             }
             else
