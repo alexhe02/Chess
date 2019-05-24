@@ -30,11 +30,11 @@ public class Knight extends Pieces
         {
             if(input)
             {
-                sprite = ImageIO.read(new File("Images/Black Knight Board.jpg"));
+                sprite = ImageIO.read(new File("Images/Black Knight Board.png"));
             }
             else
             {
-                sprite = ImageIO.read(new File("Images/White Knight Board.jpg"));
+                sprite = ImageIO.read(new File("Images/White Knight Board.png"));
             }
         }catch (IOException e){
         }

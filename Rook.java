@@ -30,11 +30,11 @@ public class Rook extends Pieces
         {
             if(input)
             {
-                sprite = ImageIO.read(new File("Images/Black Rook Board.jpg"));
+                sprite = ImageIO.read(new File("Images/Black Rook Board.png"));
             }
             else
             {
-                sprite = ImageIO.read(new File("Images/White Rook Board.jpg"));
+                sprite = ImageIO.read(new File("Images/White Rook Board.png"));
             }
         }catch (IOException e){
         }

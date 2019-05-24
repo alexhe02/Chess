@@ -31,11 +31,11 @@ public class Pawns extends Pieces
         {
             if(input)
             {
-                sprite = ImageIO.read(new File("Images/Black Pawn Board.jpg"));
+                sprite = ImageIO.read(new File("Images/Black Pawn Board.png"));
             }
             else
             {
-                sprite = ImageIO.read(new File("Images/White Pawn Board.jpg"));
+                sprite = ImageIO.read(new File("Images/White Pawn Board.png"));
             }
         }catch (IOException e){
         }

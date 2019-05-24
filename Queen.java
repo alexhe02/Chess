@@ -30,11 +30,11 @@ public class Queen extends Pieces
         {
             if(input)
             {
-                sprite = ImageIO.read(new File("Images/Black Queen Board.jpg"));
+                sprite = ImageIO.read(new File("Images/Black Queen Board.png"));
             }
             else
             {
-                sprite = ImageIO.read(new File("Images/White Queen Board.jpg"));
+                sprite = ImageIO.read(new File("Images/White Queen Board.png"));
             }
         }catch (IOException e){
         }

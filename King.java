@@ -32,11 +32,11 @@ public class King extends Pieces
         {
             if(input)
             {
-                sprite = ImageIO.read(new File("Images/Black King Board.jpg"));
+                sprite = ImageIO.read(new File("Images/Black King Board.png"));
             }
             else
             {
-                sprite = ImageIO.read(new File("Images/White King Board.jpg"));
+                sprite = ImageIO.read(new File("Images/White King Board.png"));
             }
         }catch (IOException e){
         }

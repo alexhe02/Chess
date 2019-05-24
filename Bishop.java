@@ -33,11 +33,11 @@ public class Bishop extends Pieces
         {
             if(input)
             {
-                sprite = ImageIO.read(new File("Images/Black Bishop Board.jpg"));
+                sprite = ImageIO.read(new File("Images/Black Bishop Board.png"));
             }
             else
             {
-                sprite = ImageIO.read(new File("Images/White Bishop Board.jpg"));
+                sprite = ImageIO.read(new File("Images/White Bishop Board.png"));
             }
         }catch (IOException e){
         }
