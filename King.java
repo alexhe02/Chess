@@ -21,6 +21,7 @@ public class King extends Pieces
         damageReduction = 0.1;
         tempattack = attack;
         setSprite(input);
+        specialAttack = "CHARGE ATTACK";
     }
     
     /**

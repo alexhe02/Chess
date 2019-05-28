@@ -19,6 +19,7 @@ public class Rook extends Pieces
         super(5,1,3,5,input);
         fortifypercent = .1;
         setSprite(input);
+        specialAttack = "FORTIFY";
     }
     
     /**

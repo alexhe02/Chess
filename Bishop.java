@@ -21,6 +21,7 @@ public class Bishop extends Pieces
         setSprite(input);
         healamount = 3;
         numheals = 0;
+        specialAttack = "HEAL";
     }
     
     

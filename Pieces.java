@@ -21,7 +21,10 @@ public abstract class Pieces
     protected int numblocks;
     protected boolean dead;
     protected Image sprite;
+    protected Image battleSpriteUp;
+    protected Image battleSpriteDown;
     protected boolean type;
+    protected String specialAttack;
     public Pieces(int levelcost, int health, int attack, int experienceondeath, boolean type)
     {
         //stores the information that the subclasses will give it
@@ -80,5 +83,20 @@ public abstract class Pieces
     public Image getSprite()
     {
         return sprite;
+    }
+    
+    public Image getSpriteUp()
+    {
+        return battleSpriteUp;
+    }
+    
+    public Image getSpriteDown()
+    {
+        return battleSpriteDown;
+    }
+    
+    public String getSpecialAttack()
+    {
+        return specialAttack;
     }
 }

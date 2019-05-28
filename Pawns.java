@@ -1,5 +1,4 @@
 
-
 /**
  * Abhinav Chowdavarapu and Alex He
  * 5/2/19
@@ -20,8 +19,11 @@ public class Pawns extends Pieces
         super(3,1,1,1,input);
         enPassantdamage = 2;
         setSprite(input);
+        setBattleSpriteUp(input);
+        setBattleSpriteDown(input);
+        specialAttack = "ENPASSANT";
     }
-    
+
     /**
      * With help from Henry
      */
@@ -41,17 +43,49 @@ public class Pawns extends Pieces
         }
 
     }
+
+    public void setBattleSpriteUp(boolean input)
+    {
+        try
+        {
+            if(input)
+            {
+                battleSpriteUp = ImageIO.read(new File("Images/Pawn/Black Pawn Face Up.jpg"));
+            }
+            else
+            {
+                battleSpriteUp = ImageIO.read(new File("Images/Pawn/White Pawn Face Up.jpg"));
+            }
+        }catch (IOException e){
+        }
+    }
+
+    public void setBattleSpriteDown(boolean input)
+    {
+        try
+        {
+            if(input)
+            {
+                battleSpriteDown = ImageIO.read(new File("Images/Pawn/Black Pawn Face Down.jpg"));
+            }
+            else
+            {
+                battleSpriteDown = ImageIO.read(new File("Images/Pawn/White Pawn Face Down.jpg"));
+            }
+        }catch (IOException e){
+        }
+    }
     
     public void attack(Pieces other)
     {
         super.attack(other);
     }
-    
+
     public void block()
     {
         super.block();
     }
-    
+
     public void EnPassant(Pieces other)
     {
         if (other instanceof Pawns)
@@ -77,7 +111,7 @@ public class Pawns extends Pieces
             }
         }
     }
-    
+
     public void levelUp()
     {
         while (experience >= levelcost)
@@ -89,7 +123,7 @@ public class Pawns extends Pieces
             enPassantdamage += 1;
         }
     }
-    
+
     public void die(Pieces other)
     {
         super.die(other);
