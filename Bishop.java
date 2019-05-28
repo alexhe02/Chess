@@ -14,13 +14,11 @@ import java.io.File;
 public class Bishop extends Pieces
 {
     private int healamount;
-    private int numheals;
     public Bishop(boolean input)
     {
         super(3,2,2,3,input);
         setSprite(input);
         healamount = 3;
-        numheals = 0;
         specialAttack = "HEAL";
     }
     
@@ -46,9 +44,9 @@ public class Bishop extends Pieces
     }
 
     
-    public void attack(Pieces other)
+    public void attack(Pieces other,boolean defended)
     {
-        super.attack(other);
+        super.attack(other,defended);
     }
     
     public void block()
@@ -56,20 +54,9 @@ public class Bishop extends Pieces
         super.block();
     }
     
-    public void heal()
+    public void heal(Pieces other)
     {
-        if (numheals < 4)
-        {
-            if (damage < healamount)
-            {
-                damage = 0;
-            }
-            else
-            {
-                damage -= healamount;
-            }
-            numheals += 1;
-        }
+        super.special(other);
     }
     
     public void levelUp()
@@ -80,7 +67,6 @@ public class Bishop extends Pieces
             experience -= levelcost;
             attack += 1;
             health += 1;
-            healamount += 1;
         }
     }
     

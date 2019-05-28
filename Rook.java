@@ -13,11 +13,9 @@ import java.io.IOException;
 import java.io.File;
 public class Rook extends Pieces
 {
-    protected double fortifypercent;
     public Rook(boolean input)
     {
         super(5,1,3,5,input);
-        fortifypercent = .1;
         setSprite(input);
         specialAttack = "FORTIFY";
     }
@@ -41,9 +39,9 @@ public class Rook extends Pieces
         }
 
     }
-    public void attack (Pieces other)
+    public void attack (Pieces other,boolean defended)
     {
-        super.attack(other);
+        super.attack(other,defended);
     }
     
     public void block()
@@ -59,7 +57,6 @@ public class Rook extends Pieces
             level += 1;
             attack += 1;
             health += 1;
-            fortifypercent += 0.05;
         }
     }
     

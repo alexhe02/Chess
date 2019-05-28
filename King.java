@@ -50,23 +50,14 @@ public class King extends Pieces
         super.block();
     }
     
-    public void charge()
+    public void special(Pieces other)
     {
-        tempattack *= 2;
+        super.special(other);
     }
     
-    public void attack(Pieces other)
+    public void attack(Pieces other,boolean defended)
     {
-        if (other.blocking)
-        {
-            tempattack = attack;
-            other.blocking = false;
-        }
-        else
-        {
-            other.damage += tempattack;
-            tempattack = attack;
-        }
+        super.attack(other,defended);
     }
     
     public void levelUp()

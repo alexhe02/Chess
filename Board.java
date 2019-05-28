@@ -22,9 +22,7 @@ public class Board extends Applet implements MouseListener {
     public static Pieces defendingPiece;
     public static boolean attackTurn;
     public static boolean attacksequence;
-    public static int clickX;
-    public static int clickY;
-    
+    public boolean gamegoing = true;
     public void init()
     {
         for (int i = 0; i < boardstate.length; i++)
@@ -528,15 +526,83 @@ public class Board extends Applet implements MouseListener {
             attackingPiece = currentpiece;
             defendingPiece = boardstate[newx][newy];
             attackTurn = attackingPiece.type;
-            //replace currentpiece with clicks instead and check inside the dimensions of the buttons during attacksequence
-            if(clickX == 0 && clickY == 0)
+            boolean defended;
+            if(defendingPiece instanceof Queen)
             {
-                clickX = m.getX();
-                clickY = m.getY();
-                if(attackTurn != attackingPiece.type)
+                defended = true;
+            }
+            else
+            {
+                defended = false;
+            }
+            //replace currentpiece with clicks instead and check inside the dimensions of the buttons during attacksequence
+            if(attackingPiece.dead == false && defendingPiece.dead == false)
+            {
+                int clickX = m.getX();
+                int clickY = m.getY();
+                if(attackTurn == attackingPiece.type)
                 {
-                    currentpiece = null;
+                    if(clickX > 15 && clickX < 120 && clickY > 335 && clickY < 400)
+                    {
+                        attackingPiece.attack(defendingPiece,defended);
+                        defendingPiece.die(attackingPiece);
+                        attackTurn = !attackTurn;
+                    }
+                    else if(clickX > 125 && clickX < 230 && clickY > 335 && clickY < 400)
+                    {
+                        attackingPiece.block();
+                        attackTurn = !attackTurn;
+                    }
+                    else if(clickX > 35 && clickX < 210 && clickY > 405 && clickY < 465)
+                    {
+                        attackingPiece.special(defendingPiece);
+                        defendingPiece.die(attackingPiece);
+                        attackTurn = !attackTurn;
+                    }
                 }
+                else
+                {
+                    if(clickX > 15 && clickX < 120 && clickY > 335 && clickY < 400)
+                    {
+                        attackingPiece.attack(defendingPiece,defended);
+                        defendingPiece.die(attackingPiece);
+                        attackTurn = !attackTurn;
+                    }
+                    else if(clickX > 125 && clickX < 230 && clickY > 335 && clickY < 400)
+                    {
+                        attackingPiece.block();
+                        attackTurn = !attackTurn;
+                    }
+                    else if(clickX > 35 && clickX < 210 && clickY > 405 && clickY < 465)
+                    {
+                        attackingPiece.special(defendingPiece);
+                        defendingPiece.die(attackingPiece);
+                        attackTurn = !attackTurn;
+                    }
+                }
+            }
+            if(attackingPiece.dead == true)
+            {
+                if(attackingPiece instanceof King)
+                {
+                    gamegoing = false;
+                }
+                boardstate[currentx][currenty] = null;
+                currentpiece = null;
+                attacksequence = false;
+                defendingPiece.fortified = false;
+            }
+            if(defendingPiece.dead == true)
+            {
+                if(defendingPiece instanceof King)
+                {
+                    gamegoing = false;
+                }
+                boardstate[newx][newy] = currentpiece;
+                boardstate[currentx][currenty] = null;
+                currentpiece = null;
+                attacksequence = false;
+                attackingPiece.fortified = false;
             }
             repaint();
         }
@@ -561,7 +627,7 @@ public class Board extends Applet implements MouseListener {
     //shortened code a little, changed the number of rows and columns to 8, and changed the size of the rectangles
     public void paint(Graphics g) 
     { 
-        if(!attacksequence)
+        if(!attacksequence && gamegoing)
         {
             int x, y; 
             for (int row = 0; row < 8; row++) { 
@@ -601,7 +667,7 @@ public class Board extends Applet implements MouseListener {
             }
         }
 
-        else
+        else if(attacksequence && gamegoing)
         {
             g.setColor(Color.WHITE);
             g.fillRect(0,0,480,480);
@@ -619,12 +685,12 @@ public class Board extends Applet implements MouseListener {
 
             
             g.setColor(Color.LIGHT_GRAY);
-            g.fillRect(15,335,105,65);
-            g.fillRect(125,335,105,65);
+            g.fillRect(15,335,105,65);//attack
+            g.fillRect(125,335,105,65);//block
             g.fillRect(250,335,105,65);
             g.fillRect(360,335,105,65);
             //make if statement for queen and king specials
-            g.fillRect(35,405,175,60);
+            g.fillRect(35,405,175,60);//special
             g.fillRect(270,405,175,60);
             
             
@@ -637,6 +703,33 @@ public class Board extends Applet implements MouseListener {
             //make if statements for positioning of each piece's special moves
             g.drawString(currentpiece.getSpecialAttack(),70,430);
             g.drawString(boardstate[newx][newy].getSpecialAttack(),305,430);
+        }
+        else
+        {
+            boolean blackkingalive = false;
+            boolean whitekingalive = false;
+            for(int i = 0; i < 8; i++)
+            {
+                for(int j = 0; j < 8; j++)
+                {
+                    if(boardstate[i][j] instanceof King && boardstate[i][j].type)
+                    {
+                        blackkingalive = true;
+                    }
+                    else if(boardstate[i][j] instanceof King && !boardstate[i][j].type)
+                    {
+                        whitekingalive = true;
+                    }
+                }
+            }
+            if(blackkingalive)
+            {
+                g.drawString("Black Wins",30,360);
+            }
+            else
+            {
+                g.drawString("White Wins",30,360);
+            }
         }
     } 
 }

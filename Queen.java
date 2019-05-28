@@ -42,9 +42,9 @@ public class Queen extends Pieces
 
     }
     
-    public void attack(Pieces other)
+    public void attack(Pieces other,boolean defended)
     {
-        super.attack(other);
+        super.attack(other,defended);
     }
     
     public void block()

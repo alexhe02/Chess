@@ -76,9 +76,9 @@ public class Pawns extends Pieces
         }
     }
     
-    public void attack(Pieces other)
+    public void attack(Pieces other,boolean defended)
     {
-        super.attack(other);
+        super.attack(other,defended);
     }
 
     public void block()
@@ -86,30 +86,9 @@ public class Pawns extends Pieces
         super.block();
     }
 
-    public void EnPassant(Pieces other)
+    public void special(Pieces other)
     {
-        if (other instanceof Pawns)
-        {
-            if (!other.blocking)
-            {
-                other.damage += this.enPassantdamage;
-            }
-            else
-            {
-                other.blocking = false;
-            }
-        }
-        else
-        {
-            if (!other.blocking)
-            {
-                other.damage += this.attack;
-            }
-            else
-            {
-                other.blocking = false;
-            }
-        }
+        super.special(other);
     }
 
     public void levelUp()

@@ -43,9 +43,9 @@ public class Knight extends Pieces
     }
     
     
-    public void attack(Pieces other)
+    public void attack(Pieces other,boolean defended)
     {
-        super.attack(other);
+        super.attack(other,defended);
     }
     
     public void block()
@@ -53,20 +53,9 @@ public class Knight extends Pieces
         super.block();
     }
     
-    public void Trample(Pieces other)
+    public void special(Pieces other)
     {
-        if (other.blocking)
-        {
-            other.blocking = false;
-        }
-        else if (other.level == 1)
-        {
-            other.damage += trampledamage;
-        }
-        else
-        {
-            other.damage += trampledamage/2;
-        }
+        super.special(other);
     }
     
     public void levelUp()

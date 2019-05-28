@@ -25,6 +25,8 @@ public abstract class Pieces
     protected Image battleSpriteDown;
     protected boolean type;
     protected String specialAttack;
+    protected int numheals = 0;
+    protected boolean fortified = false;
     public Pieces(int levelcost, int health, int attack, int experienceondeath, boolean type)
     {
         //stores the information that the subclasses will give it
@@ -46,13 +48,24 @@ public abstract class Pieces
         return type;
     }
     
-    public void attack(Pieces other)
+    public void attack(Pieces other, boolean defended)
     {
         //deals damage if not blocking and removes block if blocking
         if (!other.blocking)
         {
-            other.damage += attack;
-        }
+            if(other.fortified)
+            {
+                other.damage += attack*0.95;
+            }
+            else if(defended)
+            {
+                other.damage += attack*0.75;
+            }
+            else
+            {
+                other.damage += attack;
+            }
+       }
         else
         {
             other.blocking = false;
@@ -77,6 +90,73 @@ public abstract class Pieces
         {
             this.dead = true;
             other.experience += this.experienceondeath;
+        }
+    }
+    
+    public void special(Pieces other)
+    {
+        if(this instanceof Pawns)
+        {
+            if (other instanceof Pawns)
+            {
+                if (!other.blocking)
+                {
+                    other.damage += this.attack*2;
+                }
+                else
+                {
+                    other.blocking = false;
+                }
+            }
+            else
+            {
+                if (!other.blocking)
+                {
+                    other.damage += this.attack;
+                }
+                else
+                {
+                    other.blocking = false;
+                }
+            }
+        }
+        if(this instanceof Bishop)
+        {
+                if (numheals < 4)
+            {
+                if (damage < 3)
+                {
+                    damage = 0;
+                }
+                else
+                {
+                    damage -= 3;
+                }
+                numheals += 1;
+            }
+        }
+        if(this instanceof Knight)
+        {
+                if (other.blocking)
+            {
+                other.blocking = false;
+            }
+            else if (other.level == 1)
+            {
+                other.damage += this.attack*2;
+            }
+            else
+            {
+                other.damage += this.attack/2;
+            }
+        }
+        if(this instanceof Rook)
+        {
+            fortified = true;
+        }
+        if(this instanceof King)
+        {
+            this.attack *= 1.05;
         }
     }
     
