@@ -492,7 +492,7 @@ public class Board extends Applet implements MouseListener {
                     }
                     else if(currentpiece instanceof King)
                     {
-                        if(Math.abs(currentx-newx) <= 1 || Math.abs(currenty-newy) == 1)
+                        if(Math.abs(currentx-newx) <= 1 && Math.abs(currenty-newy) <= 1)
                         {
                             if(boardstate[newx][newy] == null)
                             {

@@ -156,7 +156,7 @@ public abstract class Pieces
         }
         if(this instanceof King)
         {
-            this.attack *= 1.05;
+            this.attack *= 1.25;
         }
     }
     
