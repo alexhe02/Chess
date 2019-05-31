@@ -16,7 +16,7 @@ public class Queen extends Pieces
     private double defendPercent;
     public Queen(boolean input)
     {
-        super(5,200,75,1,input);
+        super(5,200,60,1,input);
         defendPercent = 0.1;
         setSprite(input);
         setBattleSpriteUp(input);
