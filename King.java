@@ -44,6 +44,37 @@ public class King extends Pieces
 
     }
     
+    public void setBattleSpriteUp(boolean input)
+    {
+        try
+        {
+            if(input)
+            {
+                battleSpriteUp = ImageIO.read(new File("Images/King/Black King Face Up.jpg"));
+            }
+            else
+            {
+                battleSpriteUp = ImageIO.read(new File("Images/King/White King Face Up.jpg"));
+            }
+        }catch (IOException e){
+        }
+    }
+
+    public void setBattleSpriteDown(boolean input)
+    {
+        try
+        {
+            if(input)
+            {
+                battleSpriteDown = ImageIO.read(new File("Images/King/Black King Face Down.jpg"));
+            }
+            else
+            {
+                battleSpriteDown = ImageIO.read(new File("Images/King/White King Face Down.jpg"));
+            }
+        }catch (IOException e){
+        }
+    }
     
     public void block()
     {

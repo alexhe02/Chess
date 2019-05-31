@@ -42,6 +42,37 @@ public class Knight extends Pieces
 
     }
     
+    public void setBattleSpriteUp(boolean input)
+    {
+        try
+        {
+            if(input)
+            {
+                battleSpriteUp = ImageIO.read(new File("Images/Knight/Black Knight Face Up.jpg"));
+            }
+            else
+            {
+                battleSpriteUp = ImageIO.read(new File("Images/Knight/White Knight Face Up.jpg"));
+            }
+        }catch (IOException e){
+        }
+    }
+
+    public void setBattleSpriteDown(boolean input)
+    {
+        try
+        {
+            if(input)
+            {
+                battleSpriteDown = ImageIO.read(new File("Images/Knight/Black Knight Face Down.jpg"));
+            }
+            else
+            {
+                battleSpriteDown = ImageIO.read(new File("Images/Knight/White Knight Face Down.jpg"));
+            }
+        }catch (IOException e){
+        }
+    }
     
     public void attack(Pieces other,boolean defended)
     {

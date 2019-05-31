@@ -42,6 +42,38 @@ public class Queen extends Pieces
 
     }
     
+    public void setBattleSpriteUp(boolean input)
+    {
+        try
+        {
+            if(input)
+            {
+                battleSpriteUp = ImageIO.read(new File("Images/Queen/Black Queen Face Up.jpg"));
+            }
+            else
+            {
+                battleSpriteUp = ImageIO.read(new File("Images/Queen/White Queen Face Up.jpg"));
+            }
+        }catch (IOException e){
+        }
+    }
+
+    public void setBattleSpriteDown(boolean input)
+    {
+        try
+        {
+            if(input)
+            {
+                battleSpriteDown = ImageIO.read(new File("Images/Queen/Black Queen Face Down.jpg"));
+            }
+            else
+            {
+                battleSpriteDown = ImageIO.read(new File("Images/Queen/White Queen Face Down.jpg"));
+            }
+        }catch (IOException e){
+        }
+    }
+    
     public void attack(Pieces other,boolean defended)
     {
         super.attack(other,defended);
