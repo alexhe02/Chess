@@ -27,6 +27,7 @@ public abstract class Pieces
     protected String specialAttack;
     protected int numheals = 0;
     protected boolean fortified = false;
+    protected int originalattack;
     public Pieces(int levelcost, int health, int attack, int experienceondeath, boolean type)
     {
         //stores the information that the subclasses will give it
@@ -41,6 +42,7 @@ public abstract class Pieces
         numblocks = 0;
         dead = false;
         this.type = type;
+        originalattack = attack;
     }
     
     public boolean getType()
@@ -56,19 +58,23 @@ public abstract class Pieces
             if(other.fortified)
             {
                 other.damage += attack*0.95;
+                this.attack = originalattack;
             }
             else if(defended)
             {
                 other.damage += attack*0.75;
+                this.attack = originalattack;
             }
             else
             {
                 other.damage += attack;
+                this.attack = originalattack;
             }
        }
         else
         {
             other.blocking = false;
+            this.attack = originalattack;
         }
     }
     
@@ -81,7 +87,11 @@ public abstract class Pieces
             numblocks += 1;
         }
     }
-   
+    
+    public void levelUp()
+    {
+    }
+    
     public void die(Pieces other)
     {
         //checks if dead
@@ -124,13 +134,13 @@ public abstract class Pieces
         {
                 if (numheals < 4)
             {
-                if (damage < 3)
+                if (damage < 30)
                 {
                     damage = 0;
                 }
                 else
                 {
-                    damage -= 3;
+                    damage -= 30;
                 }
                 numheals += 1;
             }
@@ -143,7 +153,7 @@ public abstract class Pieces
             }
             else if (other.level == 1)
             {
-                other.damage += this.attack*2;
+                other.damage += this.attack*1.5;
             }
             else
             {

@@ -604,6 +604,7 @@ public class Board extends Applet implements MouseListener {
                 attacksequence = false;
                 defendingPiece.fortified = false;
                 newAttackSequence = true;
+                defendingPiece.levelUp();
             }
             if(defendingPiece.dead == true)
             {
@@ -617,6 +618,7 @@ public class Board extends Applet implements MouseListener {
                 attacksequence = false;
                 attackingPiece.fortified = false;
                 newAttackSequence = true;
+                attackingPiece.levelUp();
             }
             repaint();
         }
