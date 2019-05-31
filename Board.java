@@ -708,9 +708,10 @@ public class Board extends Applet implements MouseListener {
             
             
             g.setColor(Color.BLACK);
-            g.setFont(new Font("Monospaced",Font.BOLD,20));
+            g.setFont(new Font("Monospaced",Font.BOLD,15));
             g.drawString("HEALTH:" + (currentpiece.health - currentpiece.damage) + "/" + currentpiece.health, 70,330);//first character
             g.drawString("HEALTH:" + (boardstate[newx][newy].health - boardstate[newx][newy].damage) + "/" + boardstate[newx][newy].health, 305,330);//second character
+            g.setFont(new Font("Monospaced",Font.BOLD,20));
             g.drawString("ATTACK",30,360);
             g.drawString("BLOCK",145,360);
             g.drawString("ATTACK",265,360);

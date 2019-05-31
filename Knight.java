@@ -16,7 +16,7 @@ public class Knight extends Pieces
     private int trampledamage;
     public Knight(boolean input)
     {
-        super(5,2,2,3,input);
+        super(5,75,40,3,input);
         trampledamage = 2;
         setSprite(input);
         setBattleSpriteUp(input);

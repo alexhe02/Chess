@@ -17,7 +17,7 @@ public class King extends Pieces
     private int tempattack;
     public King(boolean input)
     {
-        super(16,3,1,2,input);
+        super(16,300,30,2,input);
         damageReduction = 0.1;
         tempattack = attack;
         setSprite(input);

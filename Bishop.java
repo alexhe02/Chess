@@ -16,7 +16,7 @@ public class Bishop extends Pieces
     private int healamount;
     public Bishop(boolean input)
     {
-        super(3,2,2,3,input);
+        super(3,100,30,3,input);
         setSprite(input);
         setBattleSpriteUp(input);
         setBattleSpriteDown(input);

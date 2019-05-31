@@ -15,7 +15,7 @@ public class Rook extends Pieces
 {
     public Rook(boolean input)
     {
-        super(5,1,3,5,input);
+        super(5,150,40,5,input);
         setSprite(input);
         setBattleSpriteUp(input);
         setBattleSpriteDown(input);

@@ -16,7 +16,7 @@ public class Pawns extends Pieces
     public ImageIO thisguy;
     public Pawns(boolean input)
     {
-        super(3,1,1,1,input);
+        super(3,75,30,1,input);
         enPassantdamage = 2;
         setSprite(input);
         setBattleSpriteUp(input);
