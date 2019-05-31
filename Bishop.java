@@ -18,6 +18,8 @@ public class Bishop extends Pieces
     {
         super(3,2,2,3,input);
         setSprite(input);
+        setBattleSpriteUp(input);
+        setBattleSpriteDown(input);
         healamount = 3;
         specialAttack = "HEAL";
     }

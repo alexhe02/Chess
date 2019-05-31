@@ -17,6 +17,8 @@ public class Rook extends Pieces
     {
         super(5,1,3,5,input);
         setSprite(input);
+        setBattleSpriteUp(input);
+        setBattleSpriteDown(input);
         specialAttack = "FORTIFY";
     }
     

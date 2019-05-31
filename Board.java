@@ -23,6 +23,7 @@ public class Board extends Applet implements MouseListener {
     public static boolean attackTurn;
     public static boolean attacksequence;
     public boolean gamegoing = true;
+    public static boolean newAttackSequence = true;
     public void init()
     {
         for (int i = 0; i < boardstate.length; i++)
@@ -105,7 +106,7 @@ public class Board extends Applet implements MouseListener {
                                     {//checks if piece is diagonal below to take
                                         attacksequence = true;
                                         boardstate[currentx][currenty] = null;
-                                        //currentpiece = null;
+                                        
                                         turn = !turn;
                                     }
                                     else
@@ -119,7 +120,7 @@ public class Board extends Applet implements MouseListener {
                                     {//checks if piece is diagonal above to take
                                         attacksequence = true;
                                         boardstate[currentx][currenty] = null;
-                                        //currentpiece = null;
+                                        
                                         turn = !turn;
                                     }
                                     else
@@ -133,7 +134,7 @@ public class Board extends Applet implements MouseListener {
                                     {//checks if piece is diagonal above to take
                                         attacksequence = true;
                                         boardstate[currentx][currenty] = null;
-                                        //currentpiece = null;
+                                        
                                         turn = !turn;
                                     }
                                     else
@@ -167,7 +168,7 @@ public class Board extends Applet implements MouseListener {
                                     {
                                         attacksequence = true;
                                         boardstate[currentx][currenty] = null;
-                                        //currentpiece = null;
+                                        
                                         turn = !turn;
                                     }
                                     else
@@ -181,7 +182,7 @@ public class Board extends Applet implements MouseListener {
                                     {
                                         attacksequence = true;
                                         boardstate[currentx][currenty] = null;
-                                        //currentpiece = null;
+                                        
                                         turn = !turn;
                                     }
                                     else
@@ -195,7 +196,7 @@ public class Board extends Applet implements MouseListener {
                                     {
                                         attacksequence = true;
                                         boardstate[currentx][currenty] = null;
-                                        //currentpiece = null;
+                                        
                                         turn = !turn;
                                     }
                                     else
@@ -221,7 +222,7 @@ public class Board extends Applet implements MouseListener {
                             {
                                 attacksequence = true;
                                 boardstate[currentx][currenty] = null;
-                                //currentpiece = null;
+                                
                                 turn = !turn;
                             }
                         }
@@ -289,7 +290,7 @@ public class Board extends Applet implements MouseListener {
                                 {//attack once ready
                                     attacksequence = true;
                                     boardstate[currentx][currenty] = null;
-                                    //currentpiece = null;
+                                    
                                     turn = !turn;
                                 }
                             }
@@ -363,7 +364,7 @@ public class Board extends Applet implements MouseListener {
                                 {//attack once ready
                                     attacksequence = true;
                                     boardstate[currentx][currenty] = null;
-                                    //currentpiece = null;
+                                    
                                     turn = !turn;
                                 }
                             }
@@ -475,7 +476,7 @@ public class Board extends Applet implements MouseListener {
                                 {//attack once ready
                                     attacksequence = true;
                                     boardstate[currentx][currenty] = null;
-                                    //currentpiece = null;
+                                    
                                     turn = !turn;
                                 }
                             }
@@ -491,7 +492,7 @@ public class Board extends Applet implements MouseListener {
                     }
                     else if(currentpiece instanceof King)
                     {
-                        if(Math.abs(currentx-newx) <= 1 && Math.abs(currenty-newy) == 1)
+                        if(Math.abs(currentx-newx) <= 1 || Math.abs(currenty-newy) == 1)
                         {
                             if(boardstate[newx][newy] == null)
                             {
@@ -504,7 +505,7 @@ public class Board extends Applet implements MouseListener {
                             {//attack once ready
                                 attacksequence = true;
                                 boardstate[currentx][currenty] = null;
-                                //currentpiece = null;
+                                
                                 turn = !turn;
                             }
                         }
@@ -525,7 +526,8 @@ public class Board extends Applet implements MouseListener {
         {
             attackingPiece = currentpiece;
             defendingPiece = boardstate[newx][newy];
-            attackTurn = attackingPiece.type;
+            if(newAttackSequence)
+                attackTurn = attackingPiece.type;   
             boolean defended;
             if(defendingPiece instanceof Queen)
             {
@@ -542,43 +544,53 @@ public class Board extends Applet implements MouseListener {
                 int clickY = m.getY();
                 if(attackTurn == attackingPiece.type)
                 {
-                    if(clickX > 15 && clickX < 120 && clickY > 335 && clickY < 400)
+                    if((clickX > 15 && clickX < 120) && (clickY > 335 && clickY < 400))
                     {
                         attackingPiece.attack(defendingPiece,defended);
                         defendingPiece.die(attackingPiece);
                         attackTurn = !attackTurn;
                     }
-                    else if(clickX > 125 && clickX < 230 && clickY > 335 && clickY < 400)
+                    else if((clickX > 125 && clickX < 230) && (clickY > 335 && clickY < 400))
                     {
                         attackingPiece.block();
                         attackTurn = !attackTurn;
                     }
-                    else if(clickX > 35 && clickX < 210 && clickY > 405 && clickY < 465)
+                    else if((clickX > 35 && clickX < 210) && (clickY > 405 && clickY < 465))
                     {
                         attackingPiece.special(defendingPiece);
                         defendingPiece.die(attackingPiece);
                         attackTurn = !attackTurn;
                     }
+                    else
+                    {
+                        attackTurn = attackTurn;
+                    }
+                    newAttackSequence = false;
                 }
                 else
                 {
-                    if(clickX > 15 && clickX < 120 && clickY > 335 && clickY < 400)
+                    if((clickX > 250 && clickX < 355) && (clickY > 335 && clickY < 400))
                     {
-                        attackingPiece.attack(defendingPiece,defended);
-                        defendingPiece.die(attackingPiece);
+                        defendingPiece.attack(attackingPiece,defended);
+                        attackingPiece.die(defendingPiece);
                         attackTurn = !attackTurn;
                     }
-                    else if(clickX > 125 && clickX < 230 && clickY > 335 && clickY < 400)
+                    else if((clickX > 360 && clickX < 465) && (clickY > 335 && clickY < 400))
                     {
-                        attackingPiece.block();
+                        defendingPiece.block();
                         attackTurn = !attackTurn;
                     }
-                    else if(clickX > 35 && clickX < 210 && clickY > 405 && clickY < 465)
+                    else if((clickX > 270 && clickX < 445) && (clickY > 405 && clickY < 465))
                     {
-                        attackingPiece.special(defendingPiece);
-                        defendingPiece.die(attackingPiece);
+                        defendingPiece.special(attackingPiece);
+                        attackingPiece.die(defendingPiece);
                         attackTurn = !attackTurn;
                     }
+                    else
+                    {
+                        attackTurn = attackTurn;
+                    }
+                    newAttackSequence = false;
                 }
             }
             if(attackingPiece.dead == true)
@@ -591,6 +603,7 @@ public class Board extends Applet implements MouseListener {
                 currentpiece = null;
                 attacksequence = false;
                 defendingPiece.fortified = false;
+                newAttackSequence = true;
             }
             if(defendingPiece.dead == true)
             {
@@ -603,6 +616,7 @@ public class Board extends Applet implements MouseListener {
                 currentpiece = null;
                 attacksequence = false;
                 attackingPiece.fortified = false;
+                newAttackSequence = true;
             }
             repaint();
         }
@@ -671,8 +685,8 @@ public class Board extends Applet implements MouseListener {
         {
             g.setColor(Color.WHITE);
             g.fillRect(0,0,480,480);
-            g.drawImage(currentpiece.getSpriteUp(),100,100, null);
-            g.drawImage(boardstate[newx][newy].getSpriteDown(),400,100,null);
+            g.drawImage(currentpiece.getSpriteUp(),50,200, null);
+            g.drawImage(boardstate[newx][newy].getSpriteDown(),300,75,null);
             g.setColor(Color.DARK_GRAY);
             g.fillRect(0,318,480,162);
             g.setColor(new Color(193, 165, 71));
@@ -689,7 +703,6 @@ public class Board extends Applet implements MouseListener {
             g.fillRect(125,335,105,65);//block
             g.fillRect(250,335,105,65);
             g.fillRect(360,335,105,65);
-            //make if statement for queen and king specials
             g.fillRect(35,405,175,60);//special
             g.fillRect(270,405,175,60);
             
@@ -702,7 +715,7 @@ public class Board extends Applet implements MouseListener {
             g.drawString("BLOCK",145,360);
             g.drawString("ATTACK",265,360);
             g.drawString("BLOCK",380,360);
-            //make if statements for positioning of each piece's special moves
+
             g.drawString(currentpiece.getSpecialAttack(),70,430);
             g.drawString(boardstate[newx][newy].getSpecialAttack(),305,430);
         }

@@ -19,6 +19,8 @@ public class Queen extends Pieces
         super(5,4,4,1,input);
         defendPercent = 0.1;
         setSprite(input);
+        setBattleSpriteUp(input);
+        setBattleSpriteDown(input);
         specialAttack = "FIRST DEFENSE";
     }
     

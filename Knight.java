@@ -19,6 +19,8 @@ public class Knight extends Pieces
         super(5,2,2,3,input);
         trampledamage = 2;
         setSprite(input);
+        setBattleSpriteUp(input);
+        setBattleSpriteDown(input);
         specialAttack = "TRAMPLE";
     }
     
