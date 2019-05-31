@@ -696,6 +696,8 @@ public class Board extends Applet implements MouseListener {
             
             g.setColor(Color.BLACK);
             g.setFont(new Font("Monospaced",Font.BOLD,20));
+            g.drawString("HEALTH:" + (currentpiece.health - currentpiece.damage) + "/" + currentpiece.health, 70,330);//first character
+            g.drawString("HEALTH:" + (boardstate[newx][newy].health - boardstate[newx][newy].damage) + "/" + boardstate[newx][newy].health, 305,330);//second character
             g.drawString("ATTACK",30,360);
             g.drawString("BLOCK",145,360);
             g.drawString("ATTACK",265,360);
@@ -724,11 +726,13 @@ public class Board extends Applet implements MouseListener {
             }
             if(blackkingalive)
             {
-                g.drawString("Black Wins",30,360);
+                g.setFont(new Font("Monospaced",Font.BOLD,20));
+                g.drawString("BLACK WINS",200,360);
             }
             else
             {
-                g.drawString("White Wins",30,360);
+                g.setFont(new Font("Monospaced",Font.BOLD,20));
+                g.drawString("WHITE WINS",200,360);
             }
         }
     } 
